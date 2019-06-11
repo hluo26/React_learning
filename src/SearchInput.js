@@ -1,12 +1,13 @@
 import React from "react";
 import SearchIcon from '@material-ui/icons/Search';
+import Spinner from './components/Spinner';
 
 class SearchInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
-            isLoaded: false,
+            isLoading: true,
             value: ''
         };
         this.getInfo = this.getInfo.bind(this);
@@ -19,7 +20,7 @@ class SearchInput extends React.Component {
             (result) => {
                 this.props.handleSomething(result)
                 this.setState({
-                        isLoaded: true,
+                        isLoading: true,
                     }
                 )
             },
@@ -49,6 +50,11 @@ class SearchInput extends React.Component {
         return(
             <div >
                 <div>
+                    <Spinner open={this.state.isLoading}/>
+                </div>
+                
+                <div>
+                    
                     <SearchIcon />
                     <input
                         value = {this.state.value}
