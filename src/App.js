@@ -19,10 +19,14 @@ class App extends React.Component {
     }
 
   render() {
+
     return (
+        <div className="App">
+
         <div>
             <NavigationBar/>
-            <div className="App">
+        </div>
+            <div className="body">
                 <SearchInput handleSomething={this.handleSomething}/>
                 {
                     this.state.response !== null?
@@ -38,6 +42,7 @@ class App extends React.Component {
                         :<h1>empty</h1>
                 }
             </div>
+
         </div>
 
     );
