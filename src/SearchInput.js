@@ -2,6 +2,7 @@ import React from "react";
 import SearchIcon from '@material-ui/icons/Search';
 import { css } from '@emotion/core';
 import { HashLoader } from 'react-spinners';
+import './SearchInput.css'; 
 
 const override = css`
     display: block;
@@ -58,9 +59,8 @@ class SearchInput extends React.Component {
     render() {
 
         return(
-            <div >
+            <div className="search">
                 <div>
-                    {/*<Spinner open={this.state.isLoading}/>*/}
                     <SearchIcon />
                     <input
                         value = {this.state.value}
