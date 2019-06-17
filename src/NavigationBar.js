@@ -6,9 +6,6 @@ import FormControl from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 class NavigationBar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return(
@@ -17,8 +14,8 @@ class NavigationBar extends React.Component {
                     <Navbar.Brand href="#home">Pokémon</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <Nav.Link href="#guide">Guide</Nav.Link>
+                        <Nav.Link href="#donate">Donate</Nav.Link>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
