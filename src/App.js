@@ -1,7 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, NavLink} from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import { LinkContainer } from 'react-router-bootstrap';
 import './App.css';
 import SearchInput from './SearchInput';
-import NavigationBar from './NavigationBar';
+import Donation from './Donation.js';
+import Document from './Document.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,29 +26,30 @@ class App extends React.Component {
   render() {
 
     return (
-        <div className="App">
+        <Router>
+            <div className="App">
 
-        <div>
-            <NavigationBar/>
-        </div>
+            <div>
+                <Navbar bg="light" variant="light">
+                    <Navbar.Brand to='/'>Pokémon</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Nav.Link as={NavLink} to= '/'>Home</Nav.Link>
+                        <Nav.Link as={NavLink} to='/Document'>Document</Nav.Link>
+                        <Nav.Link as={NavLink} to='/Donation'>Donation</Nav.Link>
+                    </Nav>
+                </Navbar>
+                
+            </div>
             <div className="body">
-                <SearchInput handleSomething={this.handleSomething}/>
-                {
-                    this.state.response !== null?
-                        <div>
-                            <ul>
-                                {this.state.response.map((x,index)=>
-                                    <li key={index}>
-                                        {x.ability.name}
-                                    </li>
-                                )}
-                            </ul>
-                        </div>
-                        :<h1>empty</h1>
-                }
+                <Switch>
+                    <Route exact path='/' component={() => <SearchInput handleSomething={this.handleSomething}/>} />
+                    <Route path='/Document' component={Document} />
+                    <Route path='/Donation' component={Donation} />
+                </Switch>
             </div>
 
         </div>
+</Router>
 
     );
   }
