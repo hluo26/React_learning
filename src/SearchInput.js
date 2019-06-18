@@ -1,5 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 import SearchIcon from '@material-ui/icons/Search';
+import ListItemText from '@material-ui/core/ListItemText';
+import { MDBBtn, MDBIcon } from "mdbreact";
 import { css } from '@emotion/core';
 import { HashLoader } from 'react-spinners';
 import './SearchInput.css'; 
@@ -16,7 +18,8 @@ class SearchInput extends React.Component {
         this.state = {
             error: null,
             isLoading: false,
-            value: ''
+            value: '',
+            response: []
         };
         this.getInfo = this.getInfo.bind(this);
     }
@@ -26,9 +29,9 @@ class SearchInput extends React.Component {
             res => res.json()
         ).then(
             (result) => {
-                this.props.handleSomething(result)
                 this.setState({
                         isLoading: false,
+                        response:result.abilities
                     }
                 )
             },
@@ -60,14 +63,47 @@ class SearchInput extends React.Component {
 
         return(
             <div className="search">
+                <div className="buttonGroup">
+                    <Fragment>
+                        <MDBBtn color="info">
+                            <MDBIcon fab icon="codepen" />  Profile
+                        </MDBBtn>
+                        <MDBBtn color="info">
+                            <MDBIcon fab icon="codepen" />  Moves
+                        </MDBBtn>
+                        <MDBBtn color="info">
+                            <MDBIcon far icon="address-book" />  Status 
+                        </MDBBtn>
+                        <MDBBtn color="info">
+                            <MDBIcon far icon="address-book" />  Status 
+                        </MDBBtn>
+                        <MDBBtn color="info">
+                            <MDBIcon far icon="address-book" />  Sprites 
+                        </MDBBtn>
+                    </Fragment>
+                </div>             
                 <div>
                     <SearchIcon />
                     <input
                         value = {this.state.value}
                         onChange = {this.handleInputChange}
                         onKeyPress={this.handleKeyPress}
+                        size="83"
                     />
                 </div>
+                {	                     
+                    this.state.response !== null?
+                        <div>
+                            <ul>
+                                {this.state.response.map((x,index)=>	
+                                    <li key={index}>	
+                                        <ListItemText primary={x.ability.name}/>	
+                                    </li>	
+                                )}	
+                            </ul>	
+                        </div>	
+                        :<h1>empty</h1>	
+                }
                 <div className='sweet-loading'>
                     <HashLoader
                         css={override}
