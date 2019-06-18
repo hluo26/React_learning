@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink} from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { LinkContainer } from 'react-router-bootstrap';
 import './App.css';
 import SearchInput from './SearchInput';
 import Donation from './Donation.js';
@@ -12,16 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        response: []
       };
   }
-
-  handleSomething = (value) => {
-      console.log(value);
-        this.setState( {
-            response: value.abilities
-        })
-    }
 
   render() {
 
@@ -42,7 +33,7 @@ class App extends React.Component {
             </div>
             <div className="body">
                 <Switch>
-                    <Route exact path='/' component={() => <SearchInput handleSomething={this.handleSomething}/>} />
+                    <Route exact path='/' component={() => <SearchInput/>} />
                     <Route path='/Document' component={Document} />
                     <Route path='/Donation' component={Donation} />
                 </Switch>
