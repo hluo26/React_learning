@@ -65,20 +65,20 @@ class SearchInput extends React.Component {
             <div className="search">
                 <div className="buttonGroup">
                     <Fragment>
-                        <MDBBtn color="info">
-                            <MDBIcon fab icon="codepen" />  Profile
+                        <MDBBtn size="sm" color="info">
+                            <i class="fas fa-book"></i>  Profile
                         </MDBBtn>
-                        <MDBBtn color="info">
+                        <MDBBtn size="sm" color="info">
                             <MDBIcon fab icon="codepen" />  Moves
                         </MDBBtn>
-                        <MDBBtn color="info">
+                        <MDBBtn size="sm" color="info">
                             <MDBIcon far icon="address-book" />  Status 
                         </MDBBtn>
-                        <MDBBtn color="info">
-                            <MDBIcon far icon="address-book" />  Status 
+                        <MDBBtn size="sm" color="info">
+                            <i class="fas fa-cogs"></i>  Abilities 
                         </MDBBtn>
-                        <MDBBtn color="info">
-                            <MDBIcon far icon="address-book" />  Sprites 
+                        <MDBBtn size="sm" color="info">
+                            <i class="fas fa-crow"></i>  Sprites 
                         </MDBBtn>
                     </Fragment>
                 </div>             
@@ -88,10 +88,10 @@ class SearchInput extends React.Component {
                         value = {this.state.value}
                         onChange = {this.handleInputChange}
                         onKeyPress={this.handleKeyPress}
-                        size="83"
+                        size="65"
                     />
                 </div>
-                {	                     
+                {	
                     this.state.response !== null?
                         <div>
                             <ul>
