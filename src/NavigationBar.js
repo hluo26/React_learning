@@ -15,13 +15,8 @@ class NavigationBar extends React.Component {
                     <Navbar.Brand href="#home">Pokémon</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
-<<<<<<< HEAD
-                        <Nav.Link href="#guide">Guide</Nav.Link>
-                        <Nav.Link href="#donate">Donate</Nav.Link>
-=======
                         <Nav.Link href="#document">Document</Nav.Link>
                         <Nav.Link href="#donation">Donation</Nav.Link>
->>>>>>> 4a223aceeb2c0ca3dd27e4b06130bdc844f5f529
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

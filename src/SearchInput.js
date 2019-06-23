@@ -5,6 +5,7 @@ import { MDBBtn, MDBIcon } from "mdbreact";
 import { css } from '@emotion/core';
 import { HashLoader } from 'react-spinners';
 import './SearchInput.css'; 
+import NotFound from './NotFound';
 
 const override = css`
     display: block;
@@ -62,58 +63,64 @@ class SearchInput extends React.Component {
     render() {
 
         return(
-            <div className="search">
-                <div className="buttonGroup">
-                    <Fragment>
-                        <MDBBtn size="sm" color="info">
-                            <i class="fas fa-book"></i>  Profile
-                        </MDBBtn>
-                        <MDBBtn size="sm" color="info">
-                            <MDBIcon fab icon="codepen" />  Moves
-                        </MDBBtn>
-                        <MDBBtn size="sm" color="info">
-                            <MDBIcon far icon="address-book" />  Status 
-                        </MDBBtn>
-                        <MDBBtn size="sm" color="info">
-                            <i class="fas fa-cogs"></i>  Abilities 
-                        </MDBBtn>
-                        <MDBBtn size="sm" color="info">
-                            <i class="fas fa-crow"></i>  Sprites 
-                        </MDBBtn>
-                    </Fragment>
-                </div>             
-                <div>
-                    <SearchIcon />
-                    <input
-                        value = {this.state.value}
-                        onChange = {this.handleInputChange}
-                        onKeyPress={this.handleKeyPress}
-                        size="65"
-                    />
+            <div>
+            {this.state.error === null?
+                <div className="search">
+                    <div className="buttonGroup">
+                        <Fragment>
+                            <MDBBtn size="sm" color="info">
+                                <i class="fas fa-book"></i>  Profile
+                            </MDBBtn>
+                            <MDBBtn size="sm" color="info">
+                                <MDBIcon fab icon="codepen" />  Moves
+                            </MDBBtn>
+                            <MDBBtn size="sm" color="info">
+                                <MDBIcon far icon="address-book" />  Status 
+                            </MDBBtn>
+                            <MDBBtn size="sm" color="info">
+                                <i class="fas fa-cogs"></i>  Abilities 
+                            </MDBBtn>
+                            <MDBBtn size="sm" color="info">
+                                <i class="fas fa-crow"></i>  Sprites 
+                            </MDBBtn>
+                        </Fragment>
+                    </div>             
+                    <div>
+                        <SearchIcon />
+                        <input
+                            value = {this.state.value}
+                            onChange = {this.handleInputChange}
+                            onKeyPress={this.handleKeyPress}
+                            size="65"
+                            className="input1"
+                        />
+                    </div>
+                    {	
+                        this.state.response !== null?
+                            <div>
+                                <ul>
+                                    {this.state.response.map((x,index)=>	
+                                        <li key={index}>	
+                                            <ListItemText primary={x.ability.name}/>	
+                                        </li>	
+                                    )}	
+                                </ul>	
+                            </div>	
+                            :<h1>empty</h1>	
+                    }
+                    <div className='sweet-loading'>
+                        <HashLoader
+                            css={override}
+                            sizeUnit={"px"}
+                            size={50}
+                            color={'#A9A9A9'}
+                            loading={this.state.isLoading}
+                        />
+                    </div>
                 </div>
-                {	
-                    this.state.response !== null?
-                        <div>
-                            <ul>
-                                {this.state.response.map((x,index)=>	
-                                    <li key={index}>	
-                                        <ListItemText primary={x.ability.name}/>	
-                                    </li>	
-                                )}	
-                            </ul>	
-                        </div>	
-                        :<h1>empty</h1>	
-                }
-                <div className='sweet-loading'>
-                    <HashLoader
-                        css={override}
-                        sizeUnit={"px"}
-                        size={50}
-                        color={'#A9A9A9'}
-                        loading={this.state.isLoading}
-                    />
+                :<NotFound />
+}
                 </div>
-            </div>
         );
     }
 
