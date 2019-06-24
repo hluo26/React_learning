@@ -5,7 +5,6 @@ import { MDBBtn, MDBIcon } from "mdbreact";
 import { css } from '@emotion/core';
 import { HashLoader } from 'react-spinners';
 import './SearchInput.css'; 
-import NotFound from './NotFound';
 
 const override = css`
     display: block;
@@ -20,7 +19,8 @@ class SearchInput extends React.Component {
             error: null,
             isLoading: false,
             value: '',
-            response: []
+            response: [],
+            selection:''
         };
         this.getInfo = this.getInfo.bind(this);
     }
@@ -63,8 +63,6 @@ class SearchInput extends React.Component {
     render() {
 
         return(
-            <div>
-            {this.state.error === null?
                 <div className="search">
                     <div className="buttonGroup">
                         <Fragment>
@@ -117,9 +115,6 @@ class SearchInput extends React.Component {
                             loading={this.state.isLoading}
                         />
                     </div>
-                </div>
-                :<NotFound />
-}
                 </div>
         );
     }
